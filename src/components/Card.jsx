@@ -16,11 +16,11 @@ const Card = ({product}) => {
           theme === "light" ? "bg-white text-black" : "bg-gray-800 text-white"
         }`}
       >
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center w-full">
           <img
             src={product.thumbnail}
             alt={product.title}
-            className="h-40 object-contain w-full rounded-lg"
+            className="h-40 object-contain rounded-lg mx-auto"
           />
         </div>
 
