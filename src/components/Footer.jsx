@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer
-      className={`px-6 md:px-10 py-8 transition-colors duration-300 text-white ${theme === "light" ? "bg-[#1E3A8A]" : "bg-gray-900"
+      className={`px-2 md:px-10 py-8 transition-colors duration-300 text-white ${theme === "light" ? "bg-[#1E3A8A]" : "bg-gray-900"
         }`}
     >
       <div className="container mx-auto">

@@ -3,6 +3,7 @@ import { GlobalContext } from "../context/GlobalProvider";
 import axios from "axios";
 import { MoonLoader } from "react-spinners";
 import Card from "../components/Card";
+import CardPage from "../components/CardPage";
 
 const SearchResult = () => {
   const { theme, searchTerm, loading, setLoading } = useContext(GlobalContext);
@@ -41,15 +42,8 @@ const SearchResult = () => {
               </div>
             ) : (
               <div>
-                <h2 className="text-xl font-semibold py-2 underline">
-                  Search Results:
-                </h2>
                 {searchResult.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                    {searchResult.map((product) => (
-                      <Card product={product} key={product.id} />
-                    ))}
-                  </div>
+                <CardPage products={searchResult} Title={"Search Results"} />
                 ) : (
                   <div className="py-6 text-center">
                     <h3 className="text-2xl font-medium">

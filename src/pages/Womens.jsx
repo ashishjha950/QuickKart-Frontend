@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalProvider";
 import { MoonLoader } from "react-spinners";
-import Card from "../components/Card";
+import CardPage from "../components/CardPage";
 
 const Womens = () => {
   const [productsTshirts, setProductsTshirts] = useState([]);
@@ -77,6 +77,9 @@ const Womens = () => {
     } catch (error) {
       console.error("Error fetching products:", error);
     } 
+    finally{
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -87,7 +90,6 @@ const Womens = () => {
     fetchProductsBags();
     fetchProductsTops();
     fetchProductsWatches();
-    setLoading(false);
   }, []);
 
   return (
@@ -103,72 +105,12 @@ const Womens = () => {
           </div>
         ) : (
           <div >
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-24 underline">
-                Womens Dresses
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsTshirts.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Womens Shoes
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsShoes.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Womens Jewellery
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsJewellery.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Womens Bags
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsBags.map((product) => (
-                 <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Tops
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsTops.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Womens Watches
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsWatches.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-
+              <CardPage products={productsTshirts} Title={"Womens Dresses"}/>
+              <CardPage products={productsShoes} Title={"Womens Shoes"}/>
+              <CardPage products={productsJewellery} Title={"Womens Jewellery"}/>
+              <CardPage products={productsBags} Title={"Womens Bags"}/>
+              <CardPage products={productsTops} Title={"Tops"}/>
+              <CardPage products={productsWatches} Title={"Womens Watches"}/>
           </div>
         )}
       </div>

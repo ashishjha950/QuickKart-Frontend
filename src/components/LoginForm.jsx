@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { GlobalContext } from "../context/GlobalProvider"; 
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -15,16 +16,19 @@ const LoginForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("token", "dummy-token");
     setIsAuthenticated(true);
+    navigate('/');
   };
 
   return (
     <div
       className={`max-w-md mx-auto p-8 rounded-lg shadow-lg transition-all duration-300 ${
-        theme === "light" ? "bg-white text-gray-900" : "bg-gray-800 text-white"
+        theme === "light" ? "bg-white text-gray-900" : "bg-gray-900 text-white"
       }`}
     >
       <h2 className="text-2xl text-center font-semibold mb-6">

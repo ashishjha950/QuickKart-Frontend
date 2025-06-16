@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalProvider";
 import { MoonLoader } from "react-spinners";
-import Card from "../components/Card";
+import CardPage from "../components/CardPage";
 
 const Electronics = () => {
   const [productsSmartPhones, setProductsSmartPhones] = useState([]);
@@ -53,6 +53,9 @@ const Electronics = () => {
     } catch (error) {
       console.error("Error fetching products:", error);
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -61,7 +64,6 @@ const Electronics = () => {
     fetchProductsLaptops();
     fetchProductsTablets();
     fetchProductsVehicles();
-    setLoading(false);
   }, []);
 
   return (
@@ -77,46 +79,10 @@ const Electronics = () => {
           </div>
         ) : (
           <div >
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-24 underline">
-                SmartPhones
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsSmartPhones.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Laptops
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsLaptops.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Tablets
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsTablets.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Electric Vehicles
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsVehicles.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
+              <CardPage products={productsSmartPhones} Title={"SmartPhones"}/>
+              <CardPage products={productsLaptops} Title={"Laptops"}/>
+              <CardPage products={productsTablets} Title={"Tablets"}/>
+              <CardPage products={productsVehicles} Title={"Electric Vehicles"}/>
           </div>
         )}
       </div>

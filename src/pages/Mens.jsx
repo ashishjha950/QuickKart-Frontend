@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalProvider";
 import { MoonLoader } from "react-spinners";
-import Card from "../components/Card";
+import CardPage from "../components/CardPage";
 
 const Mens = () => {
   const [productsTshirts, setProductsTshirts] = useState([]);
@@ -41,6 +41,9 @@ const Mens = () => {
     } catch (error) {
       console.error("Error fetching products:", error);
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -48,7 +51,6 @@ const Mens = () => {
     fetchProductsTshirts();
     fetchProductsShoes();
     fetchProductsWatches();
-    setLoading(false);
   }, []);
 
   return (
@@ -64,36 +66,9 @@ const Mens = () => {
           </div>
         ) : (
           <div >
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-24 underline">
-                Mens T-Shirts
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsTshirts.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Mens Shoes
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsShoes.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Mens Watches
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsWatches.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
+              <CardPage products={productsTshirts} Title={"Mens T-Shirts"} />
+              <CardPage products={productsShoes} Title={"Mens Shoes"} />
+              <CardPage products={productsWatches} Title={"Mens Watches"} />
           </div>
         )}
       </div>

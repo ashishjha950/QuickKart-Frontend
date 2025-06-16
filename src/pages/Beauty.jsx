@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalProvider";
 import { MoonLoader } from "react-spinners";
-import Card from "../components/Card";
+import CardPage from "../components/CardPage";
 
 const Beauty = () => {
   const [productsMakeup, setProductsMakeup] = useState([]);
@@ -41,6 +41,9 @@ const Beauty = () => {
     } catch (error) {
       console.error("Error fetching products:", error);
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -48,7 +51,6 @@ const Beauty = () => {
     fetchProductsMakeup();
     fetchProductsFragrance();
     fetchProductsSkinCare();
-    setLoading(false);
   }, []);
 
   return (
@@ -64,37 +66,9 @@ const Beauty = () => {
           </div>
         ) : (
           <div >
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-24 underline">
-                Makeup
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsMakeup.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-               Fragrances
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsFragrances.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl text-center font-semibold pt-10 underline">
-                Skin-Care
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {productsSkinCare.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
+              <CardPage products={productsMakeup} Title={"Makeup"}/>
+              <CardPage products={productsFragrances} Title={"Fragrances"}/>
+              <CardPage products={productsSkinCare} Title={"Skin-Care"}/>
           </div>
         )}
       </div>

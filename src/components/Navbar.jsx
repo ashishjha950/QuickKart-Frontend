@@ -30,7 +30,7 @@ const Navbar = () => {
           <img src="logo.png" alt="logo" />
         </NavLink>
 
-        <div className="hidden md:block w-80">
+        <div className="hidden md:block w-80 lg:w-xl">
           <SearchBar />
         </div>
 
@@ -40,7 +40,7 @@ const Navbar = () => {
             to="/cart"
             className="px-3 py-1 font-semibold rounded-md border-gray-400 hover:bg-gray-300 flex gap-1 items-center transition-all duration-300 hover:text-black hover:border-gray-500"
           >
-            {totalQuantity}
+            {isAuthenticated && totalQuantity}
             <FaCartShopping />
             <span className="hidden sm:block">Cart</span>
           </NavLink>

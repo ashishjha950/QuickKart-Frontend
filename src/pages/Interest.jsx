@@ -3,6 +3,7 @@ import { GlobalContext } from "../context/GlobalProvider";
 import axios from "axios";
 import { MoonLoader } from "react-spinners";
 import Card from "../components/Card";
+import CardPage from "../components/CardPage";
 
 
 const Interest = () => {
@@ -46,16 +47,7 @@ const Interest = () => {
             <MoonLoader color={theme === "light" ? "#060606" : "#ffffff"} />
           </div>
         ) : (
-            <div>
-              <h2 className="text-xl font-semibold pt-24 underline">
-                Your Interest:
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-6">
-                {interestProducts.map((product) => (
-                    <Card product={product} key={product.id} />
-                ))}
-              </div>
-            </div>
+                  <CardPage products = {interestProducts} Title = { "Your Interest" }/>
         )}
       </div>
     </div>

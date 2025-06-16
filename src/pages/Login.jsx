@@ -10,7 +10,7 @@ const Login = () => {
     <div
       className={`${
         theme === "light" ? "bg-gray-100 text-black" : "bg-gray-800 text-white"
-      } min-h-screen flex items-center justify-center`}
+      } px-6 py-24 flex items-center justify-center`}
     >
       <div className="container mx-auto px-4 transition-all duration-300">
         {loading ? (
@@ -18,7 +18,7 @@ const Login = () => {
             <MoonLoader color={theme === "light" ? "#060606" : "#ffffff"} />
           </div>
         ) : (
-          <div className={`max-w-md w-full p-6 rounded-lg shadow-md mx-auto ${theme === "light" ? "bg-[#1E3A8A]" : "bg-gray-900 "}`}>
+          <div>
             <LoginForm />
           </div>
         )}

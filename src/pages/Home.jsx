@@ -4,8 +4,8 @@ import { GlobalContext } from "../context/GlobalProvider";
 import { MoonLoader } from "react-spinners";
 import Interest from "./Interest";
 import SearchResult from "./SearchResult";
-import Card from "../components/Card";
 import HomeCarousel from "../components/HomeCarousel";
+import CardPage from '../components/CardPage'
 
 
 const Home = () => {
@@ -47,12 +47,7 @@ const Home = () => {
             <MoonLoader color={theme === "light" ? "#060606" : "#ffffff"} />
           </div>
         ) : (
-          <div>
-            <h2 className="text-xl font-semibold pt-20 underline">Products:-</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 py-6">
-              {products.map((product) => (<Card key={product.id} product={product} /> ))}
-            </div>
-          </div>
+            <CardPage products={products} Title={"Products"} />
         )}
       </div>
     </div>
