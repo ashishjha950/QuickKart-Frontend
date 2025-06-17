@@ -20,6 +20,7 @@ const SearchBar = () => {
         <input
           type="text"
           name="search"
+          required
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search products..."
           className="px-2 sm:px-8 placeholder:text-gray-400 placeholder:text-sm text-black focus:outline-none transition-all duration-300"

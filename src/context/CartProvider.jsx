@@ -20,12 +20,26 @@ const addToCart = (productID) => {
 };
 
   
-  const removeFromCart = (productId) => {
-    setTotalQuantity(totalQuantity - 1);
+  const removeFromCart = (productID) => {
+    const updated = cartItems.filter((item)=> item.id !== productID);
+    setCartItems(updated);
+
+    const total = updated.reduce((acc, item) => acc + item.quantity, 0);
+    setTotalQuantity(total);
+  };
+
+  const updatedCart = (productID, newQuantity) => {
+    const updated = cartItems.map((item) =>
+      item.id === productID ? { ...item, quantity: newQuantity } : item
+    );
+    setCartItems(updated);
+
+    const total = updated.reduce((acc, item) => acc + item.quantity, 0);
+    setTotalQuantity(total);
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, totalQuantity, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartItems, totalQuantity, setTotalQuantity, addToCart, setCartItems, removeFromCart, updatedCart }}>
       {children}
     </CartContext.Provider>
   );
