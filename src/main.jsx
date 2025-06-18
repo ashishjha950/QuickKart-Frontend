@@ -6,9 +6,12 @@ import GlobalProvider from "./context/GlobalProvider.jsx";
 import CartProvider from "./context/CartProvider.jsx";
 import AuthProvider from "./context/AuthProvider.jsx";
 import CheckoutProvider from "./context/CheckoutProvider.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <>
     <CheckoutProvider>
       <GlobalProvider>
         <CartProvider>
@@ -18,5 +21,6 @@ createRoot(document.getElementById("root")).render(
         </CartProvider>
       </GlobalProvider>
     </CheckoutProvider>
-  </StrictMode>
+    <ToastContainer position="top-left" autoClose={1000} />
+  </>
 );

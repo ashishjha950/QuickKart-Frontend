@@ -6,6 +6,7 @@ import { CiUser, CiLogout } from "react-icons/ci";
 import { AuthContext } from "../context/AuthProvider";
 import { CartContext } from "../context/CartProvider";
 import SearchBar from "./SearchBar";
+import { toast } from "react-toastify";
 
 
 const Navbar = () => {
@@ -17,6 +18,7 @@ const Navbar = () => {
 
   const Logout = () => {
     localStorage.removeItem("token");
+    toast.warn('Logout Successfully');
     setIsAuthenticated(false);
     navigate('/');
   }

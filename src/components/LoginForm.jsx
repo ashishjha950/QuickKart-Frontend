@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { GlobalContext } from "../context/GlobalProvider"; 
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    toast.success('Login Successfully');
     localStorage.setItem("token", "dummy-token");
     setIsAuthenticated(true);
     navigate('/');

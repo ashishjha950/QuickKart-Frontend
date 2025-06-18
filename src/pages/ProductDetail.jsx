@@ -8,20 +8,20 @@ import ReviewCard from "../components/ReviewCard";
 import Interest from "./Interest";
 import { CartContext } from "../context/CartProvider";
 import { CheckoutContext } from "../context/CheckoutProvider";
+import { toast } from "react-toastify";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-
-
+import { AuthContext } from "../context/AuthProvider";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProductDetail] = useState(null);
   const { theme, loading, setLoading,setInterest } = useContext(GlobalContext);
   const {addToCart} = useContext(CartContext);
-  const {setCheckoutAmount} = useContext(CheckoutContext)
+  const {setCheckoutAmount} = useContext(CheckoutContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchProductDetail = async () => {
@@ -44,9 +44,12 @@ const ProductDetail = () => {
 
   const navigate = useNavigate();
 
-  const handleAddToCart = (ProductId) => {
+  const handleAddToCart = (ProductId,title) => {
+    if (isAuthenticated) {
+    toast.success(title +" is added to cart.")    
     addToCart(ProductId);
-    navigate('/cart');
+  }
+  navigate('/cart');
   };
   const handleBuyNow = (price) => {
     setCheckoutAmount(price*85);
@@ -160,7 +163,7 @@ const ProductDetail = () => {
 
                 <div className="mt-4 flex space-x-4">
                   <button
-                    onClick={()=>handleAddToCart(product.id)}
+                      onClick={() => handleAddToCart(product.id, product.title)}
                     className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded cursor-pointer"
                   >
                     Add to Cart

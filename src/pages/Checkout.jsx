@@ -3,6 +3,7 @@ import { CheckoutContext } from "../context/CheckoutProvider.jsx";
 import { GlobalContext } from "../context/GlobalProvider.jsx";
 import { CartContext } from "../context/CartProvider.jsx";
 import { loadRazorpayScript } from "../utils/loadScript";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   const { theme } = useContext(GlobalContext);
@@ -28,6 +29,7 @@ const Checkout = () => {
       image: "/logo.png",
       handler: function (response) {
         setPaymentSuccess(true);
+        toast.success("Payment successful");
       },
       prefill: {
         name: "Ashish Kumar",
