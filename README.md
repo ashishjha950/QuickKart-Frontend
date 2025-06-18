@@ -29,8 +29,7 @@ This is a fully responsive **eCommerce web application** built with **React.js**
 
 | Home Page | Product Detail | Cart Page | Checkout Page |
 |-----------|----------------|-----------|----------------|
-| ![QuickKart Frontend](https://github.com/user-attachments/assets/e429b727-6d9c-40a1-aeb4-05f9fd1caf94) | ![Screenshot 2025-06-18 083756](https://github.com/user-attachments/assets/06bc4740-0bf4-4af4-ac17-6e3a8fb30f82) 
- |  ![Screenshot 2025-06-18 083848](https://github.com/user-attachments/assets/94553156-630f-4c32-9f73-362d5f69127c) | ![Screenshot 2025-06-18 085029](https://github.com/user-attachments/assets/4d67c72f-1a45-44d6-8b0e-b2eb5b05662d) |
+|![QuickKart Frontend](https://github.com/user-attachments/assets/e429b727-6d9c-40a1-aeb4-05f9fd1caf94)|![Screenshot 2025-06-18 083756](https://github.com/user-attachments/assets/06bc4740-0bf4-4af4-ac17-6e3a8fb30f82)|![Screenshot 2025-06-18 083848](https://github.com/user-attachments/assets/94553156-630f-4c32-9f73-362d5f69127c)|![Screenshot 2025-06-18 085029](https://github.com/user-attachments/assets/4d67c72f-1a45-44d6-8b0e-b2eb5b05662d)|
 
 
 ## 🛠️ Installation
