@@ -1,8 +1,11 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
-import { GlobalContext } from "../context/GlobalProvider"; 
+import { GlobalContext } from "../context/GlobalProvider";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -19,19 +22,30 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const successfullyLogin = () => {
     toast.success('Login Successfully');
     localStorage.setItem("token", "dummy-token");
     setIsAuthenticated(true);
     navigate('/');
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    successfullyLogin();
+  };
+
+  const handleSuccess = (credentialResponse) => {
+    successfullyLogin();
+  };
+
+  const handleError = () => {
+    toast.error('Login Failed');
   };
 
   return (
     <div
-      className={`max-w-md mx-auto p-8 rounded-lg shadow-lg transition-all duration-300 ${
-        theme === "light" ? "bg-white text-gray-900" : "bg-gray-900 text-white"
-      }`}
+      className={`max-w-md mx-auto p-8 rounded-lg shadow-lg transition-all duration-300 ${theme === "light" ? "bg-white text-gray-900" : "bg-gray-900 text-white"
+        }`}
     >
       <h2 className="text-2xl text-center font-semibold mb-6">
         Login
@@ -48,9 +62,8 @@ const LoginForm = () => {
             autoComplete="username"
             value={formData.email}
             onChange={handleChange}
-            className={`border rounded-lg p-3 placeholder:text-gray-500 placeholder:text-sm focus:outline-none focus:ring-2 w-full ${
-              theme === "light" ? "border-gray-300 focus:ring-blue-500" : "border-gray-600 focus:ring-blue-400"
-            }`}
+            className={`border rounded-lg p-3 placeholder:text-gray-500 placeholder:text-sm focus:outline-none focus:ring-2 w-full ${theme === "light" ? "border-gray-300 focus:ring-blue-500" : "border-gray-600 focus:ring-blue-400"
+              }`}
             placeholder="Enter your email"
           />
         </div>
@@ -65,9 +78,8 @@ const LoginForm = () => {
             autoComplete="current-password"
             value={formData.password}
             onChange={handleChange}
-            className={`border rounded-lg p-3 placeholder:text-gray-500 placeholder:text-sm focus:outline-none focus:ring-2 w-full ${
-              theme === "light" ? "border-gray-300 focus:ring-blue-500" : "border-gray-600 focus:ring-blue-400"
-            }`}
+            className={`border rounded-lg p-3 placeholder:text-gray-500 placeholder:text-sm focus:outline-none focus:ring-2 w-full ${theme === "light" ? "border-gray-300 focus:ring-blue-500" : "border-gray-600 focus:ring-blue-400"
+              }`}
             placeholder="Enter your password"
           />
         </div>
@@ -76,6 +88,10 @@ const LoginForm = () => {
           className="w-full cursor-pointer bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
         >
           Login
+        </button>
+        <button className="w-full cursor-pointer text-white py-2 rounded-lg font-semibold ">
+        <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+
         </button>
       </form>
     </div>

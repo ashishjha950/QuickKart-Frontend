@@ -8,6 +8,7 @@ import AuthProvider from "./context/AuthProvider.jsx";
 import CheckoutProvider from "./context/CheckoutProvider.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 
 createRoot(document.getElementById("root")).render(
@@ -16,7 +17,9 @@ createRoot(document.getElementById("root")).render(
       <GlobalProvider>
         <CartProvider>
           <AuthProvider>
+            <GoogleOAuthProvider clientId="704328663681-ap5s1vjkllmh5u4a2e7ki2q50kt3oivs.apps.googleusercontent.com">
             <App />
+            </GoogleOAuthProvider>
           </AuthProvider>
         </CartProvider>
       </GlobalProvider>

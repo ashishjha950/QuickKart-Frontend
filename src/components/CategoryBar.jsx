@@ -18,8 +18,9 @@ const CategoryBar = () => {
     ];
 
   return (
-    <nav 
-      className={`container z-10 py-2 px-4 md:px-10 pt-16 md:pt-18 mx-auto w-full justify-between transition-all duration-300 ${theme === "light" ? "bg-white text-gray-900" : "bg-gray-700 text-white"}`}
+    <nav className={`transition-all duration-300 ${theme === "light" ? "bg-white text-gray-900" : "bg-gray-700 text-white"}`}>
+    <div 
+      className={`container z-10 py-2 px-4 md:px-10 pt-16 md:pt-18 mx-auto w-full justify-between `}
     >
       <div className="block md:hidden">
       <div className="flex justify-between items-center gap-3 w-full">
@@ -58,6 +59,7 @@ const CategoryBar = () => {
 
         </div>
         
+    </div>
     </nav>
   );
 };
